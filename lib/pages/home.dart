@@ -29,6 +29,10 @@ class App extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
+            bodySmall: GoogleFonts.montserrat(
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+            ),
           )),
       home: const HomePage(),
     );
@@ -46,6 +50,23 @@ class HomePage extends StatelessWidget {
           titleTextStyle: Theme.of(context).textTheme.titleLarge,
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
-        body: const RaceList());
+        body: Container(
+          // This allows the Column to take up all available vertical space
+          constraints: const BoxConstraints.expand(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  "Races (2023)",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+              const Expanded(child: RaceList()),
+            ],
+          ),
+        ));
   }
 }
