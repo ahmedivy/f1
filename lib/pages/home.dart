@@ -1,4 +1,4 @@
-import 'racelist.dart';
+import '../widgets/racelist.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,6 +46,6 @@ class HomePage extends StatelessWidget {
           titleTextStyle: Theme.of(context).textTheme.titleLarge,
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
-        body: RaceList());
+        body: const RaceList());
   }
 }
