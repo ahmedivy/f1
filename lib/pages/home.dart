@@ -9,7 +9,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Test App",
+      title: "Formula 1",
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.red,
@@ -21,15 +22,15 @@ class App extends StatelessWidget {
               fontSize: 72,
               fontWeight: FontWeight.bold,
             ),
-            titleLarge: GoogleFonts.montserrat(
+            titleLarge: GoogleFonts.titilliumWeb(
               fontSize: 26,
               fontWeight: FontWeight.bold,
             ),
-            titleMedium: GoogleFonts.montserrat(
+            titleMedium: GoogleFonts.titilliumWeb(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
-            bodySmall: GoogleFonts.montserrat(
+            bodySmall: GoogleFonts.titilliumWeb(
               fontSize: 14,
               fontWeight: FontWeight.normal,
             ),

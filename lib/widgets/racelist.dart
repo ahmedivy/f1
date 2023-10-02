@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:f1/models/race.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ class RaceList extends StatefulWidget {
 }
 
 class _RaceListState extends State<RaceList> {
-  List<dynamic> races = [];
+  List<Race> races = [];
 
   @override
   void initState() {
@@ -24,8 +25,14 @@ class _RaceListState extends State<RaceList> {
         await http.get(Uri.parse("https://ergast.com/api/f1/2023.json"));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
+      final racesData = data['MRData']['RaceTable']['Races'];
+
+      final List<Race> temp = [];
+      for (var race in racesData) {
+        temp.add(Race.fromJson(race));
+      }
       setState(() {
-        races = data['MRData']['RaceTable']['Races'];
+        races = temp;
       });
     } else {
       throw Exception('Failed to Load Data');
@@ -40,17 +47,14 @@ class _RaceListState extends State<RaceList> {
             itemCount: races.length,
             itemBuilder: (BuildContext context, int index) {
               final race = races[index];
-              final raceName = race['raceName'];
-              final circuitName = race['Circuit']['circuitName'];
-              final date = DateTime.parse(race["date"]);
 
-              final formattedDate = DateFormat('d MMM').format(date);
+              final formattedDate = DateFormat('d MMM').format(race.date);
 
               return ListTile(
-                  title: Text(raceName,
+                  title: Text(race.name,
                       style: Theme.of(context).textTheme.titleMedium),
                   subtitle: Text(
-                    circuitName,
+                    race.circuit.name,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   onTap: () {
