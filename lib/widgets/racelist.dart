@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:f1/models/race.dart';
+import 'package:f1/pages/race_details.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +49,7 @@ class _RaceListState extends State<RaceList> {
             itemBuilder: (BuildContext context, int index) {
               final race = races[index];
 
-              final formattedDate = DateFormat('d MMM').format(race.date);
+              final formattedDate = DateFormat('d MMM').format(race.raceDate);
 
               return ListTile(
                   title: Text(race.name,
@@ -59,6 +60,12 @@ class _RaceListState extends State<RaceList> {
                   ),
                   onTap: () {
                     // You can navigate to the race details or perform other actions here.
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RaceDetails(race: race),
+                      ),
+                    );
                   },
                   trailing: Text(
                     formattedDate,

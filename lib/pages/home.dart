@@ -12,29 +12,17 @@ class App extends StatelessWidget {
       title: "Formula 1",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.red,
-            brightness: Brightness.dark,
-          ),
-          useMaterial3: true,
-          textTheme: TextTheme(
-            displayLarge: const TextStyle(
-              fontSize: 72,
-              fontWeight: FontWeight.bold,
-            ),
-            titleLarge: GoogleFonts.titilliumWeb(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-            ),
-            titleMedium: GoogleFonts.titilliumWeb(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            bodySmall: GoogleFonts.titilliumWeb(
-              fontSize: 14,
-              fontWeight: FontWeight.normal,
-            ),
-          )),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+        textTheme: GoogleFonts.titilliumWebTextTheme().copyWith(
+          titleMedium: const TextStyle(color: Colors.white),
+          bodySmall: const TextStyle(color: Colors.white),
+          titleLarge: const TextStyle(color: Colors.white),
+        ),
+      ),
       home: const HomePage(),
     );
   }
@@ -51,7 +39,9 @@ class HomePage extends StatelessWidget {
           titleTextStyle: Theme.of(context).textTheme.titleLarge,
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: Container(
+          margin: const EdgeInsets.all(16),
           // This allows the Column to take up all available vertical space
           constraints: const BoxConstraints.expand(),
           child: Column(
